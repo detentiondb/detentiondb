@@ -1,0 +1,42 @@
+(use 'clj-sql-up)
+(use 'clj-sql-up.migrate)
+(dir 'clj-sql-up.migrate)
+(dir clj-sql-up.migrate)
+(def DB "jdbc:postgresql://postgres:postgres@localhost:5432/vchain")
+(use 'clj-sql-up.migration-files)
+(dir 'clj-sql-up.migration-files)
+(dir clj-sql-up.migration-files)
+(get-migration-files)
+(load-migration-file (first (get-migration-files)))
+(resolve direction)
+(load-migration-file (first (get-migration-files "up")))
+(load-migration-file (first (get-migration-files)))
+(up)
+(first (up))
+(use 'clojure.java.jdbc :as sql)
+(require '[clojure.java.jdbc :as sql])
+(sql/db-transaction* DB (fn [trans] (sql/db-do-commands (first (up)))))
+(sql/db-transaction* DB (fn [trans] (sql/db-do-commands trans (first (up)))))
+(sql/db-transaction* DB (fn [trans] (sql/db-do-commands trans "drop table users;")))
+(sql/db-transaction* DB (fn [trans] (doseq [cmd (up)] (sql/db-do-commands trans cmd))))
+(System/getNextException)
+(.getNextException *e)
+(dir *e)
+*e
+*1
+*2
+*3
+*4
+*
+*w
+*e
+(sql/db-transaction* DB (fn [trans] (doseq [cmd (up)] (sql/db-do-commands trans cmd))))
+(sql/db-transaction* DB (fn [trans] (doseq [cmd (down)] (sql/db-do-commands trans cmd))))
+(sql/db-transaction* DB (fn [trans] (doseq [cmd (up)] (sql/db-do-commands trans cmd))))
+(.printStackTrace (.getCause *e))
+(.printStackTrace (.getNextException *e))
+(sql/db-transaction* DB (fn [trans] (doseq [cmd (up)] (sql/db-do-commands trans cmd))))
+(.printStackTrace (.getNextException *e))
+(sql/db-transaction* DB (fn [trans] (doseq [cmd (up)] (sql/db-do-commands trans cmd))))
+(sql/db-transaction* DB (fn [trans] (doseq [cmd (down)] (sql/db-do-commands trans cmd))))
+(user/reset)

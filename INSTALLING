@@ -1,0 +1,57 @@
+# Installation and setup of vchain on Ubuntu 14.04
+
+## Oracle Java 8 latest
+
+You need to install this. 
+
+## PostgreSQL and PostGIS
+$ sudo add-apt-repository https://launchpad.net/~ubuntugis/+archive/ppa/
+$ sudo apt-get install postgresql-9.3-postgis-2.1
+$ sudo su - postgres
+[postgres]$ createuser -ders tom
+[postgres]$ createdb -O tom vchain
+[postgres]$ psql
+psql (9.3.4)
+Type "help" for help.
+
+postgres=# ALTER USER postgres WITH PASSWORD 'postgres';
+ALTER ROLE
+postgres=# CREATE EXTENSION postgis;
+postgres=# \q
+
+$ sudo apt-get install pgadmin3
+
+## Om Autocomplete
+
+This Om component doesn't have a Clojars deployment yet. Probably should.
+
+$ cd ~/dev
+$ git clone https://github.com/arosequist/om-autocomplete.git
+$ echo '{:user {:plugins [[lein-localrepo "0.5.3"]]}}' >> ~/.lein/profiles.clj
+$ cd om-autocomplete
+$ lein install
+$ lein localrepo coords target/om-autocomplete-0.1.0-SNAPSHOT.jar | xargs lein local repo install
+
+## Migration of base datasets 
+
+Add the correct database name (eg "vchain" or "scratch") to /src/clj/vchain/data.clj.
+Then use the clj-sql-up plugin to migrate the base data into the database.
+
+$ cd ~/dev/vchain
+$ lein repl # … ^D
+$ lein clj-sql-up migrate
+
+Commands like the following (where DB is a value similar to :database in the clj-sql-up options) can 
+be used to manually apply migrations from the REPL. 
+
+> (sql/db-transaction* DB (fn [trans] (doseq [cmd (down)] (sql/db-do-commands trans cmd))))
+
+## Firing up the development webserver
+
+$ lein repl
+
+vchain.core=> (user/reset)
+:reloading (vchain.data-extensions vchain.slug vchain.data vchain.entity vchain.relation vchain.service vchain.data-tools vchain.response vchain.templates vchain.auth vchain.web vchain.core vchain.test.core user)
+:ready
+vchain.core=> 
+

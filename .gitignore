@@ -1,0 +1,12 @@
+pom.xml
+*jar
+/lib/
+/classes/
+/target/
+*swp
+.lein-failures
+.lein-deps-sum
+.repl
+*.*un~
+/resources/public/js/out/
+/resources/public/js/main.js
