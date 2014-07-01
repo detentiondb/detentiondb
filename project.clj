@@ -76,7 +76,7 @@
                                    :source-map "resources/public/js/main.js.map"
                                    :pretty-print false}}]}
 
-  :clj-sql-up {:database "jdbc:postgresql://postgres:postgres@localhost:5432/vchain"
+  :clj-sql-up {:database "jdbc:postgresql://postgres:postgres@localhost:5432/ddb"
                :deps [[org.clojure/java.jdbc "0.3.3"]
                       [korma "0.3.1"]
                       [clj-json "0.5.0"]

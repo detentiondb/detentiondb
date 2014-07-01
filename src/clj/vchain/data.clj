@@ -2,7 +2,7 @@
   (:use korma.core korma.db vchain.data-extensions))
 
 (defdb scratch 
-       (postgres {:db "vchain"
+       (postgres {:db "ddb"
                   :user "postgres"
                   :password "postgres"}))
 
