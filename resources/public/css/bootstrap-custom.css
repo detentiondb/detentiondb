@@ -1,5 +1,5 @@
 /* set a max-width for horizontal fluid layout and make it centered */
-.container-fluid {
+.container {
 	margin-right: auto;
 	margin-left: auto;
 	max-width: 950px; /* or 1600px */
@@ -8,5 +8,14 @@
 .navbar-nav li input {
 	margin-top: 15px;
 	margin-bottom: 15px;
+}
+
+.form-inline span {
+	display: inline;
+	margin-right: 10px;
+}
+
+.form-inline span:last-child {
+	margin-right: 0px;
 }
 

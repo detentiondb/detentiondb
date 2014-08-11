@@ -13,19 +13,19 @@
             vchain.history))
 
 (defn entity-header [ent]
-  [:span
-   [:h2 {:style {:display "inline"}}
-    (:ent_name ent)]
+  [:div 
+   [:span [:h2 {:style {:display "inline"}}
+           (:ent_name ent)]] 
    (when-let [typ (:ety_short_name ent)]
-     (str "[" (string/capitalize typ) "]"))
-   [:a. {:on-click #(println "share!")}
-    [:span.glyphicon.glyphicon-share]]])
+     [:span (str "[" (string/capitalize typ) "]")]) 
+   [:span [:a. {:on-click #(println "share!")}
+           [:span.glyphicon.glyphicon-share]]]])
 
 (defn add-entity-control [ent]
   [:span.pull-right
    [:h4 {:style {:display "inline"}}"Add new entity"]
    [:a {:on-click #(vchain.routes/dispatch!
-                     "/entity/new")}
+                    "/entity/new")}
     [:span.glyphicon.glyphicon-plus-sign]]])
 
 (defn entity-readonly [app owner]
@@ -37,45 +37,45 @@
         (assert (not (contains? #{:edit :cancelled :saved :new} mode)) 
                 (str "cannot be rendering entity-readonly in mode " mode))
         (html
-          [:div
-           [:div.row-fluid
-            [:div.span4 (entity-header ent)]
-            [:hr]
-            (om/build vchain.controls/markdown-textarea ent
-                      {:opts {:data-fn #(get % :ent_description)
-                              :display-fn (constantly true)}})
-            (om/build vchain.controls/attribution ent)]])))))
+         [:div
+          [:div.row.col-md-4 (entity-header ent)]
+          [:hr]
+          (om/build vchain.controls/markdown-textarea ent
+                    {:opts {:data-fn #(get % :ent_description)
+                            :display-fn (constantly true)}})
+          (om/build vchain.controls/attribution ent)])))))
 
 (defn entity-editable [app owner]
   (reify
     om/IWillMount
     (will-mount [_]
       (vchain.util/listen-events 
-        owner 
-        (fn [{:keys [path old-value new-value] :as topic} value]
+       owner 
+       (fn [{:keys [path old-value new-value] :as topic} value]
          (if (= [:mode] path)
            (let [[old-mode] old-value
                  [new-mode] new-value]
              (println old-mode "-->" new-mode)
              (when (= [old-mode new-mode] [:edit :saved])
                (let [ent (:entity @app)]
-               (vchain.app/save-entity! ent))))))))
+                 (vchain.app/save-entity! ent))))))))
     om/IRenderState
     (render-state [_ {:keys [editing]}]
       (let [mode (get-in app [:mode 0])
             ent (get app :entity)]
         (assert (not= mode :new) "should not be rendering entity-editable in mode :new")
         (html [:div
-               [:div.row-fluid
-                [:span.span4 (entity-header ent)]
-                [:span.span4.pull-right (om/build vchain.controls/edit-control app)]]
+               [:div.row
+                [:div.col-md-6.form-inline (entity-header ent)] 
+                [:div.pull-right {:style {:margin-right "15px"}} 
+                 (om/build vchain.controls/edit-control app)]] 
                [:hr]
                (case mode 
                  :edit
                  (om/build vchain.controls/editable-textarea ent
                            {:opts {:data-key :ent_description 
                                    :finish-edit #(om/transact! app :mode
-                                                              (fn [_] [:saved]))}})
+                                                               (fn [_] [:saved]))}})
                  (:show :saved :cancelled)
                  (om/build vchain.controls/markdown-textarea ent
                            {:opts {:data-fn #(:ent_description %)
@@ -88,7 +88,7 @@
       (when-let [ent (get app :entity)]
         (set! (.-title js/document) (vchain.util/title (:ent_name ent))))
       (let [user (get app :user)]
-        (html [:div.container-fluid
+        (html [:div
                (if user
                  ; Logged in: can edit
                  (om/build entity-editable app)

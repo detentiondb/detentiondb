@@ -8,7 +8,7 @@
   (reify
     om/IRender
     (render [_]
-      (html [:div.row-fluid
+      (html [:div.row
              (let [error (get app :error)]
                (if (not (nil? error))
                  [:div.alert.alert-danger.alert-dismissable

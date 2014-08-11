@@ -19,12 +19,12 @@
              [:div.navbar.navbar-inverse 
               [:div.container
                [:div.navbar-header [:p.navbar-brand (vchain.util/title "detention database")]]
-               [:div.collapse.navbar-collapse.pull-right
+               [:div.pull-right
                 [:ul.nav.navbar-nav
                  [:li.dropdown
                   [:div#autocomplete 
                    (om/build vchain.search/autocomplete app {:opts {:id "entity-search" :set-text false}})]]]]
-               [:div.collapse.navbar-collapse.pull-right#signin 
+               [:div.pull-right#signin 
                 (om/build vchain.signin/signin-view app)]]]
              [:div.container.vchain-record  
               [:div#alert 
