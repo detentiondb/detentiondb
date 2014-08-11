@@ -43,7 +43,7 @@
                   :value "sign in"}]]]
               ; Logged in
               [:li
-               [:p.navbar-text
+               [:span.navbar-text
                 (str "[" user "] ")
                 [:a
                  {:on-click #(do 

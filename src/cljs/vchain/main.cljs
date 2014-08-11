@@ -16,16 +16,22 @@
       (html [:div
              [:div.vchain-fullscreen
               (om/build vchain.graph/full-view app {:opts {:override-id "network"}})]
-             [:div.navbar.navbar-inverse 
-              [:div.container
-               [:div.navbar-header [:p.navbar-brand (vchain.util/title "detention database")]]
-               [:div.pull-right
+             [:nav.navbar.navbar-inverse 
+               [:div.container
+                [:div.navbar-header 
+                [:button.navbar-toggle 
+                 {:type "button" 
+                  :data-target ".navbar-collapse"}
+                 [:span.sr-only "Toggle navigation"]
+                 [:span.glyphicon.glyphicon-list]]
+                  [:span.navbar-brand (vchain.util/title "a detention industry database")]]
+               [:div.collapse.navbar-collapse.pull-right
                 [:ul.nav.navbar-nav
-                 [:li.dropdown
+                 [:li.dropdown.navbar-text
                   [:div#autocomplete 
-                   (om/build vchain.search/autocomplete app {:opts {:id "entity-search" :set-text false}})]]]]
-               [:div.pull-right#signin 
-                (om/build vchain.signin/signin-view app)]]]
+                   (om/build vchain.search/autocomplete app {:opts {:id "entity-search" :set-text false}})]]i
+                 [:li
+                  [:div#signin (om/build vchain.signin/signin-view app)]]]]]]
              [:div.container.vchain-record  
               [:div#alert 
                (om/build vchain.alert/alert-view app)]

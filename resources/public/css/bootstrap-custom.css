@@ -5,9 +5,8 @@
 	max-width: 950px; /* or 1600px */
 }
 
-.navbar-nav li input {
-	margin-top: 15px;
-	margin-bottom: 15px;
+.navbar-collapse {
+	padding: 0px;
 }
 
 .form-inline span {
@@ -17,5 +16,14 @@
 
 .form-inline span:last-child {
 	margin-right: 0px;
+}
+
+#signin .dropdown-menu {
+	padding: 10px;
+}
+
+#signin .dropdown-menu input {
+	margin-top: 5px;
+        margin-bottom: 5px;
 }
 

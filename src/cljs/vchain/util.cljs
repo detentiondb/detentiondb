@@ -16,7 +16,7 @@
    :post "POST"
    :delete "DELETE"})
 
-(defn title [label] (str "detentionDB :: " label))
+(defn title [label] (str "DetentionDB :: " label))
 
 (defn edn-xhr [{:keys [method url data on-complete on-error]}]
   (let [xhr (XhrIo.)]
