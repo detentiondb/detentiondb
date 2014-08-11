@@ -36,7 +36,7 @@
                  {:type "password"
                   :size "30"
                   :on-key-press login-on-enter}]
-                [:input.btn.pull-right
+                [:input.btn.btn-primary.pull-right
                  {:on-click login-fn
                   :style {:clear "left" :width "100%"}
                   :type "submit"

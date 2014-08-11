@@ -45,7 +45,7 @@
         (html
          [:div.row
           ; usually displayed when editing
-          [:span.col-md-12
+          [:div.col-md-12
            [:textarea.col-md-12
             {:rows "10"
              :width "auto"
@@ -59,7 +59,7 @@
     (render [_]
       (html (if data 
               [:div.row#markdown
-               [:span.col-md-12 {:style {:display (if display-fn (display-fn data) true)}
+               [:div.col-md-12 {:style {:display (if display-fn (display-fn data) true)}
                                  :dangerouslySetInnerHTML 
                                  {:__html (.makeHtml  (js/Showdown.converter.) (or (data-fn data) "[add a description]"))}}]]
               [:div.row#markdown "Loading"])))))

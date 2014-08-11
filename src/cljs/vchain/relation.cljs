@@ -25,7 +25,6 @@
             (:rty_description rel)]]
           [:tr])))
 
-
 (defn add-relation-view [app owner]
   (reify
     om/IRender
@@ -35,10 +34,10 @@
         (html
          [:div
           [:div.row 
-           [:span.col-md-12 
+           [:div.col-md-12 
             [:h4 "Add relationship"]]]
           [:div.row
-           [:span.col-md-12 
+           [:div.col-md-12 
             [:form.form-inline#form-add-relation {:role "form"}
              [:div.form-group
               [:span (:ent_name ent)]
@@ -67,15 +66,17 @@
             user (get app :user)]
         (html [:div
                [:div.row
-                [:span.col-md-12 [:h4 "Network"]]
-                [:span.col-md-12 [:table.col-md-12.table.table-condensed
-                                  (apply dom/tbody (map relation-view rels))]] 
-                #_[:div 
-                   (apply dom/div (map relation-view rels))]
-                #_[:div.col-md-6 
-                   (om/build vchain.graph/graph-view rels)]] 
-               [:div.row [:span.col-md-12 [:hr]]] 
+                [:div.col-md-12 [:h4 "Network"]]] 
+               [:div.row 
+                [:div.col-md-12 [:table.col-md-12.table.table-condensed
+                                 (apply dom/tbody (map relation-view rels))]]] 
+               [:div.row [:div.col-md-12 [:hr]]] 
                (when user
                  (om/build vchain.relation/add-relation-view app))])))))
 
+; old code
+# _[:div 
+    (apply dom/div (map relation-view rels))]
+# _[:div.col-md-6 
+    (om/build vchain.graph/graph-view rels)] 
 

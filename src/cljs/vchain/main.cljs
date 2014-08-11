@@ -19,12 +19,12 @@
              [:nav.navbar.navbar-inverse 
                [:div.container
                 [:div.navbar-header 
-                [:button.navbar-toggle 
+                [:button.navbar-toggle.btn-primary 
                  {:type "button" 
                   :data-target ".navbar-collapse"}
                  [:span.sr-only "Toggle navigation"]
                  [:span.glyphicon.glyphicon-list]]
-                  [:span.navbar-brand (vchain.util/title "a detention industry database")]]
+                  [:span.navbar-brand "DetentionDB"]]
                [:div.collapse.navbar-collapse.pull-right
                 [:ul.nav.navbar-nav
                  [:li.dropdown.navbar-text

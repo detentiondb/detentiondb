@@ -13,7 +13,7 @@
             vchain.history))
 
 (defn entity-header [ent]
-  [:div 
+  [:span.form-inline 
    [:span [:h2 {:style {:display "inline"}}
            (:ent_name ent)]] 
    (when-let [typ (:ety_short_name ent)]
@@ -38,8 +38,8 @@
                 (str "cannot be rendering entity-readonly in mode " mode))
         (html
          [:div
-          [:div.row.col-md-4 (entity-header ent)]
-          [:hr]
+          [:div.row.col-md-12 (entity-header ent)]
+          [:div.row [:div.col-md-12 [:hr]]] 
           (om/build vchain.controls/markdown-textarea ent
                     {:opts {:data-fn #(get % :ent_description)
                             :display-fn (constantly true)}})
@@ -66,10 +66,10 @@
         (assert (not= mode :new) "should not be rendering entity-editable in mode :new")
         (html [:div
                [:div.row
-                [:div.col-md-6.form-inline (entity-header ent)] 
-                [:div.pull-right {:style {:margin-right "15px"}} 
-                 (om/build vchain.controls/edit-control app)]] 
-               [:hr]
+                [:div.col-md-12 
+                 (entity-header ent) 
+                 [:span.pull-right (om/build vchain.controls/edit-control app)]]] 
+               [:div.row [:div.col-md-12 [:hr]]] 
                (case mode 
                  :edit
                  (om/build vchain.controls/editable-textarea ent
