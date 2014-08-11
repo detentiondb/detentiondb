@@ -40,15 +40,12 @@
            [:div.row-fluid
             [:form.form-inline#form-add-relation {:role "form"}
              [:div.form-group
-              [:span {:style {:margin-right "10px"}} 
-               (:ent_name ent)]
-              [:span {:style {:margin-right "10px"}}
-               [:label.sr-only {:for "form-add-relation-rty"}]
+              [:span (:ent_name ent)]
+              [:span [:label.sr-only {:for "form-add-relation-rty"}]
                (vchain.controls/combo 
                  (map (fn [d] (:rty_description d)) (get app :relation-types))
                  "form-add-relation-rty")]
-              [:span {:style {margin-right "10px"}} 
-               [:label.sr-only {:for "form-add-relation-ent"}]
+              [:span [:label.sr-only {:for "form-add-relation-ent"}]
                [:div.dropdown {:style {:display "inline"}} 
                 (om/build vchain.search/autocomplete app 
                           {:opts {:id "form-add-relation-ent" :set-text true}})]]

@@ -40,3 +40,6 @@
 (sql/db-transaction* DB (fn [trans] (doseq [cmd (up)] (sql/db-do-commands trans cmd))))
 (sql/db-transaction* DB (fn [trans] (doseq [cmd (down)] (sql/db-do-commands trans cmd))))
 (user/reset)
+(def some-map {:foo "foo" :bar "bar"})
+(user/reset)
+(user/reset-all)

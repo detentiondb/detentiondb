@@ -25,25 +25,20 @@
                 {:data-toggle "dropdown"}
                 "sign in"
                 [:strong.caret]]
-               [:div.dropdown-menu.pull-right {:style {:padding "15px"}}
+               [:div.dropdown-menu.pull-right
                 [:label.control-label {:for "username"} "username"]
                 [:input.input-block-level#username 
-                 {:style {:margin-bottom "15px"}
-                  :type "text"
+                 {:type "text"
                   :size "30"
                   :on-key-press login-on-enter}]
                 [:label.control-label {:for "password"} "password"]
                 [:input.input-block-level#password
-                 {:style {:margin-bottom "15px"}
-                  :type "password"
+                 {:type "password"
                   :size "30"
                   :on-key-press login-on-enter}]
                 [:input.btn.pull-right
                  {:on-click login-fn
-                  :style {:clear "left" 
-                          :width "100%" 
-                          :padding-top "10px"
-                          :margin-bottom "15px"}
+                  :style {:clear "left" :width "100%"}
                   :type "submit"
                   :value "sign in"}]]]
               ; Logged in

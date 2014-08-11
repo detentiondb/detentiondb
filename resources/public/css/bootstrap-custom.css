@@ -5,3 +5,8 @@
 	max-width: 950px; /* or 1600px */
 }
 
+.navbar-nav li input {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+

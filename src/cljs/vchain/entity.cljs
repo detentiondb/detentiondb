@@ -14,17 +14,16 @@
 
 (defn entity-header [ent]
   [:span
-   [:h2 {:style {:display "inline"
-                 :margin-right "10px"}}
+   [:h2 {:style {:display "inline"}}
     (:ent_name ent)]
    (when-let [typ (:ety_short_name ent)]
      (str "[" (string/capitalize typ) "]"))
-   [:a. {:style {:margin-left "10px"} :on-click #(println "share!")}
+   [:a. {:on-click #(println "share!")}
     [:span.glyphicon.glyphicon-share]]])
 
 (defn add-entity-control [ent]
   [:span.pull-right
-   [:h4 {:style {:display "inline" :margin-right "10px"}} "Add new entity"]
+   [:h4 {:style {:display "inline"}}"Add new entity"]
    [:a {:on-click #(vchain.routes/dispatch!
                      "/entity/new")}
     [:span.glyphicon.glyphicon-plus-sign]]])

@@ -42,10 +42,9 @@
         (html
           [:div.row-fluid
            ; usually displayed when editing
-           [:textarea.col-xs-12 
+           [:textarea.col-md-12 
             {:rows "10"
-             :style {:resize "vertical"
-                     :padding-left "3px"}
+             :style {:resize "vertical"}
              :value edit-data
              :on-change #(handle-change % data data-key owner)}]]))))) ; submit changes 
 
